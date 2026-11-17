@@ -400,29 +400,29 @@ const SEED_DEFAULT = {
  baseTools: [
  { role: 'anchor', name: 'fallestate', prime: 883, url: 'https://sjgant80-hub.github.io/fallestate/'
 ,
- purpose: 'Property register · sales / lettings pipeline · deposit log (TDS / DPS) · S.21 / S.8 diary · RTR records · CMP · 12-pt compliance' },
+ purpose: 'Property register · sales / lettings pipeline · deposit log (TDS / DPS) · RTR records · CMP · 12-pt compliance' },
  { role: 'onboard', name: 'fallestateonboard', prime: 887, url: 'https://sjgant80-hub.github.io/fallestateonboard/'
 ,
  purpose: 'Client onboarding · CDD / KYC · vendor / landlord ID · source-of-funds · TOBA · vulnerable-customer flag · consent capture' },
  { role: 'paper', name: 'fallestatepaper', prime: 907, url: 'https://sjgant80-hub.github.io/fallestatepaper/'
 ,
- purpose: 'TOBA · AST · MA · S.21 · S.8 · S.13 · prescribed information · How to Rent · EPC notice · gas safety notice · DPS / TDS receipts' },
+ purpose: 'TOBA · assured periodic tenancy (APT) · MA · S.8 (Form 3A) · S.13 (Form 4A) · prescribed information · EPC notice · gas safety notice · DPS / TDS receipts' },
  { role: 'practice', name: 'fallestatepractice', prime: 911, url: 'https://sjgant80-hub.github.io/fallestatepractice/'
 ,
  purpose: 'Workflow · diary · reconciliation · CMP · redress scheme + ombudsman log · file reviews · property file audit · KPI tracker' }
  ],
  t0Rules: [
  { pattern: 'aml|mlr|hmrc supervision', answer: 'AML / MLR 2017: estate agency business in scope since June 2017; supervisor HMRC. CDD on BOTH buyer and seller for transactions £10,000+. Letting agents in scope where monthly rent ≥ €10,000 / approx £8,400.' },
- { pattern: 'deposit|tdp|tds|dps|mydeposits', answer: 'Tenancy deposit protection (Housing Act 2004 ss.212-215, Sch.10): protect within 30 days in an authorised scheme (TDS / DPS / MyDeposits); serve Prescribed Information within 30 days. Failure: 1-3 x deposit penalty + no S.21.' },
- { pattern: 's\\.?21|section 21', answer: 'Section 21 Housing Act 1988 — no-fault notice. 2 months minimum. Cannot serve if deposit unprotected, no Prescribed Information, no EPC, no Gas Safety Record (at start), no How to Rent guide. Repealed by Renters’ Rights Act 2024 (commencement TBA).' },
- { pattern: 's\\.?8|section 8|grounds', answer: 'Section 8 Housing Act 1988 — fault-based grounds. Mandatory (1-8) + discretionary (9-17). Notice periods vary (2 weeks ground 14; 2 months ground 1; 4 weeks ground 8).' },
- { pattern: 's\\.?13|rent increase', answer: 'Section 13 Housing Act 1988 — rent increase. 1 month notice (periodic AST). Tenant can challenge at First-tier Tribunal (Property Chamber).' },
+ { pattern: 'deposit|tdp|tds|dps|mydeposits', answer: 'Tenancy deposit protection (Housing Act 2004 ss.212-215, Sch.10): protect within 30 days in an authorised scheme (TDS / DPS / MyDeposits); serve Prescribed Information within 30 days. Failure: 1-3 x deposit penalty, and no possession order unless the deposit is protected with the Prescribed Information given, or returned.' },
+ { pattern: 's\\.?21|section 21', answer: 'Section 21 Housing Act 1988 (no-fault notice): abolished for private tenancies in England from 1 May 2026 (Renters’ Rights Act 2025). No section 21 notice can be served now; notices served before 1 May 2026 could usually be used for up to 6 months or until 31 July 2026, whichever was sooner. Possession now needs a section 8 ground, a notice on Form 3A and a court order.' },
+ { pattern: 's\\.?8|section 8|grounds', answer: 'Section 8 Housing Act 1988, as amended by the Renters’ Rights Act 2025: from 1 May 2026 the only route to possession of a private tenancy in England. Notice on Form 3A; the period depends on the ground: Grounds 1 (landlord or family) and 1A (sale) 4 months, and not in the first 12 months; Ground 8 (3 months’ arrears at notice and at the hearing) 4 weeks; Grounds 10 and 11 4 weeks; Ground 14 (anti-social behaviour) proceedings can begin straight away. A court order is always needed.' },
+ { pattern: 's\\.?13|rent increase', answer: 'Section 13 Housing Act 1988, as amended: from 1 May 2026 (England) rent can only be increased by a section 13 notice on Form 4A, once a year, with 2 months’ notice; rent review clauses have no effect. The tenant can challenge at the First-tier Tribunal (Property Chamber), which cannot set a rent above the landlord’s proposal.' },
  { pattern: 'cmp|client money protection', answer: 'CMP (Client Money Protection): mandatory for letting / managing agents in England since 1 Apr 2019. Membership of govt-approved scheme (e.g. ARLA, NALS, RICS, UKALA). £5,000 penalty + repeat £30k.' },
  { pattern: 'right to rent|immigration', answer: 'Right to Rent (Immigration Act 2014): pre-tenancy immigration status check. £80 first / £500 repeat per illegal occupant civil penalty; £20,000 increase Feb 2024.' },
  { pattern: 'epc|mees', answer: 'EPC (Energy Performance of Buildings Regs 2012): minimum E rating MEES (since 1 Apr 2018 new tenancies; 1 Apr 2020 all). Proposed C from 2030. £5,000 penalty / breach.' },
  { pattern: 'redress|tpo|prs', answer: 'Estate agent redress: mandatory membership of TPO, Property Redress Scheme, or Ombudsman Services (Consumer Estate Agents and Redress Act 2007 + Enterprise & Regulatory Reform Act 2013). £5,000 penalty if not.' },
  { pattern: 'gas safety|cp12', answer: 'Gas Safety (Installation and Use) Regulations 1998: annual landlord gas safety check; copy (CP12) to tenant within 28 days; before new tenant moves in.' },
- { pattern: 'how to rent|ehl', answer: 'How to Rent guide: must be provided at start of every new AST in England (Deregulation Act 2015 s.38; AT Prescribed Information Regs 2015). No S.21 without it.' },
+ { pattern: 'how to rent|ehl|information sheet|written information', answer: 'How to Rent guide: from 1 May 2026, in most cases it no longer has to be given (gov.uk). New tenancies in England need the written information the Renters’ Rights Act 2025 requires, given before the tenancy is agreed; existing written tenancies needed the Renters’ Rights Act Information Sheet 2026 by 31 May 2026.' },
  { pattern: 'electrical|eicr', answer: 'Electrical Safety Standards in the Private Rented Sector (England) Regs 2020: EICR every 5 years. New tenancies from 1 Jul 2020; existing from 1 Apr 2021. £30,000 max penalty.' }
  ],
  complianceItems: [
@@ -435,7 +435,7 @@ const SEED_DEFAULT = {
  'Gas Safety Record renewed annually — GSIUR 1998',
  'EICR within 5 yrs + remedial documented',
  'EPC ≥ E (MEES) — Energy Performance Regs 2012',
- 'How to Rent issued on every new tenancy',
+ 'Written information given before every new tenancy (Renters’ Rights Act 2025)',
  'TOBA + Tenant Fees Act 2019 compliance',
  'Complaints procedure + redress signposting',
  'Privacy notice + Art.13 — UK GDPR'
